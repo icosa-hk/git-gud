@@ -1,4 +1,7 @@
 #!/bin/bash
+cmd=$1
+shift
+
 git status
 
 if [ $# -gt 0 ]; then
@@ -20,4 +23,18 @@ do
 done
 git commit -m "$message"
 
-git push
+if [[ $cmd == push ]]; then
+  git push
+else
+
+  echo "Do you want to push to remote? (Y/n):"
+  old_stty_cfg=$(stty -g)
+  stty raw -echo ; answer=$(head -c 1) ; stty $old_stty_cfg # Care playing with stty
+  if echo "$answer" | grep -iq "^y" ; then
+    echo "Yes"
+    git push
+  else
+    echo "No"
+    exit 0
+  fi
+fi

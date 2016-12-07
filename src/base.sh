@@ -13,7 +13,6 @@ if [ $# -gt 0 ]; then
       pull.sh
       ;;
     commit|add|push )
-      shift
       commit.sh $@
       ;;
     undo )
