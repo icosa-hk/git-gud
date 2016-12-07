@@ -1,21 +1,16 @@
 #!/bin/bash
 
-
-# source ~/.bashrc
-
-# # added by Anaconda3 4.2.0 installer
-# export PATH="/Users/wil/anaconda/bin:$PATH"
-
-
 install_files () { 
   echo "Installing Git-Gud at $HOME/.git-gud "
   cd "src"
   for f in *; do
     if [[ $f != base.sh ]]; then
-        # $f is a directory
-        echo "$f"
+        # echo "$f"
         cp "$f" "$HOME/.git-gud"
-        chmod "u=rx" "$HOME/.git-gud/$f"
+        
+        if [[ $f == *.sh ]]; then
+          chmod "u=rx" "$HOME/.git-gud/$f"
+        fi
     fi
   done
   
@@ -28,19 +23,51 @@ install_files () {
   echo  " Done"
 }
 
+add_path_manually(){
+  echo "Please add the following to your path manually"
+  echo "export PATH=\"$HOME/.git-gud:\${PATH}\""
+}
+
+write_to_rc(){
+  echo "Adding path to $1 "
+  
+  # Remove Path if it already exist
+  grep "-v" "#Added by Git Gud" "$HOME/$1" > "temp" && mv "temp" "$HOME/$1"
+  grep "-v" "export PATH=\"$HOME/.git-gud:\${PATH}\"" "$HOME/$1" > "temp" && mv "temp" "$HOME/$1"
+  echo -n ">>"
+
+  # Echo in the path
+  echo "#Added by Git Gud" >> "$HOME/$1"  
+  echo "export PATH=\"$HOME/.git-gud:\${PATH}\"" >> "$HOME/$1"   
+  echo -n ">>"
+
+  source "$HOME/$1"
+}
+
 add_files_to_path (){
-  echo "Adding path to bash profile "
-  grep "-v" "#Added by Git Gud" "$HOME/.bash_profile" > "temp" && mv "temp" "$HOME/.bash_profile"
-  grep "-v" "export PATH=\"$HOME/.git-gud:\${PATH}\"" "$HOME/.bash_profile" > "temp" && mv "temp" "$HOME/.bash_profile"
-  echo -n ">>"
-
-  echo "" >> "$HOME/.bash_profile"  
-  echo "#Added by Git Gud" >> "$HOME/.bash_profile"  
-  echo "export PATH=\"$HOME/.git-gud:\${PATH}\"" >> "$HOME/.bash_profile"  
-  echo "" >> "$HOME/.bash_profile"  
-  echo -n ">>"
-
-  source "$HOME/.bash_profile"
+  if [[ $SHELL == *bash* ]]; then
+    echo "You are using bash, do you want to add path to .bashrc? (y/n)"
+    stty_rc=$(stty -g)
+    stty raw -echo ; answer=$(head -c 1) ; stty $stty_rc # Care playing with stty
+    if echo "$answer" | grep -iq "^y" ; then
+      echo "Yes"
+      write_to_rc .bashrc
+    else
+        echo "No"
+        add_path_manually
+    fi
+  elif [[ $SHELL == *zsh* ]]; then
+    echo "You are using zsh, do you want to add path to .zshrc? (y/n)"
+    stty_rc=$(stty -g)
+    stty raw -echo ; answer=$(head -c 1) ; stty $stty_rc # Care playing with stty
+    if echo "$answer" | grep -iq "^y" ; then
+      echo "Yes"
+      write_to_rc .zshrc
+    else
+        echo "No"
+        add_path_manually
+    fi
+  fi
   echo  ">> Done"
 }
 
@@ -53,16 +80,18 @@ else
   old_stty_cfg=$(stty -g)
   stty raw -echo ; answer=$(head -c 1) ; stty $old_stty_cfg # Care playing with stty
   if echo "$answer" | grep -iq "^y" ;then
-      echo "Yes"
-      rm -rf "$HOME/.git-gud"
-      mkdir "$HOME/.git-gud"
-      install_files
-      add_files_to_path
+    echo "Yes"
+    rm -rf "$HOME/.git-gud"
+    mkdir "$HOME/.git-gud"
+    install_files
+    add_files_to_path
   else
-      echo "No"
-      echo "Quitting git-gud installation, goodbye :)"
-      exit 0
+    echo "No"
+    echo "Quitting git-gud installation, goodbye :)"
+    exit 0
   fi
 fi
 
 echo "Git-Gud Installation Complete, use \`git gud man\` for usage manual"
+
+exit 0

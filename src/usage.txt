@@ -1,0 +1,10 @@
+usage: git gud <command>
+
+This a list of the git gud fucntions:
+  init        A more elaborated init with prompts
+  profile     Set and view user profiles
+  clone       Clone that include submodule setup
+  pull        Pull that includes submodoule updates
+  push        Add, commit, push sequence
+  undo        Undo add, commit or push
+  backmerge   A reintergration merge   

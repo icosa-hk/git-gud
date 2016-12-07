@@ -7,10 +7,9 @@
 # note: if this is set to -gt 0 the /etc/hosts part is not recognized ( may be a bug )
 
 if [ $# -gt 0 ]; then
-    echo "Your command line contains $# arguments"
-    echo "\$0 $0 \$1 $1 \$2 $2"
+    echo cat 'usage.txt' 
 else
-    echo "Your command line contains no arguments"
+    cat $HOME/.git-gud/usage.txt
 fi
 
 # case $1 in
