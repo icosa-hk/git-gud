@@ -7,9 +7,16 @@
 # note: if this is set to -gt 0 the /etc/hosts part is not recognized ( may be a bug )
 
 if [ $# -gt 0 ]; then
-    echo cat 'usage.txt' 
+  case $1 in
+    pull )
+      pull.sh
+      ;;
+    * )
+      echo "git gud: $1 is not a valid command. See 'git gud man'."
+      ;;
+  esac
 else
-    cat $HOME/.git-gud/usage.txt
+  cat $HOME/.git-gud/usage.txt
 fi
 
 # case $1 in

@@ -39,9 +39,12 @@ write_to_rc(){
   # Echo in the path
   echo "#Added by Git Gud" >> "$HOME/$1"  
   echo "export PATH=\"$HOME/.git-gud:\${PATH}\"" >> "$HOME/$1"   
-  echo -n ">>"
+  echo ">> Done"
 
+  # Reload the rc
+  echo "Reloading $1: source $1"
   source "$HOME/$1"
+  echo ">> Done"
 }
 
 add_files_to_path (){
@@ -68,7 +71,6 @@ add_files_to_path (){
         add_path_manually
     fi
   fi
-  echo  ">> Done"
 }
 
 if [ ! -d "$HOME/.git-gud" ]; then
