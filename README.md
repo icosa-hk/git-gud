@@ -61,7 +61,7 @@ Alias include add, commit, and push, where if push is used, git-gud will push wi
 
 1. add: Undo an add
 2. commit: Undo a commit
-3. push: Undo a push
+3. changes: Undo all local changes to the lastest commit
 
 
 ### gud profile
