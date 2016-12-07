@@ -1,4 +1,4 @@
-main(){
+main() {
   if [ -d "$HOME/.git-gud" ]; then
     rm -rf "$HOME/.git-gud"
   if
