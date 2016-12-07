@@ -22,7 +22,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/icosa-hk/git-gud/master/gi
 - [ ] gud init
 - [X] gud clone
 - [X] gud pull
-- [ ] gud commit
+- [X] gud commit
 - [X] gud undo
 - [ ] gud profile
 - [ ] gud backmerge

@@ -43,7 +43,7 @@ write_to_rc(){
 
   # Reload the rc
   echo "Reloading $1: source $HOME/$1"
-  source $HOME/$1
+  . $HOME/$1
   echo ">> Done"
 }
 
