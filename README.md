@@ -6,7 +6,7 @@ git gud for git
 
 ## Usage
 ```shell
-git gud [cmd] [options]
+git gud <cmd> [options]
 
 ```
 
@@ -18,7 +18,7 @@ git gud [cmd] [options]
 ## Feature List
 
 - [ ] gud init
-- [ ] gud pull
+- [X] gud pull
 - [ ] gud push
 - [ ] gud undo
 - [ ] gud profile
