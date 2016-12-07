@@ -1,22 +1,22 @@
 #!/bin/bash
 
 install_files () { 
-  echo "Installing Git-Gud at $HOME/.git-gud "
+  echo "Installing Git-Gud at $HOME/.git-gud/bin "
   cd "src"
   for f in *; do
     if [[ $f != base.sh ]]; then
         # echo "$f"
-        cp "$f" "$HOME/.git-gud"
+        cp "$f" "$HOME/.git-gud/bin"
         
         if [[ $f == *.sh ]]; then
-          chmod "u=rx" "$HOME/.git-gud/$f"
+          chmod "u=rx" "$HOME/.git-gud/bin/$f"
         fi
     fi
   done
   
   echo -n ">>"
-  cp "base.sh" "$HOME/.git-gud/git-gud"
-  chmod "u=rx" "$HOME/.git-gud/git-gud"
+  cp "base.sh" "$HOME/.git-gud/bin/git-gud"
+  chmod "u=rx" "$HOME/.git-gud/bin/git-gud"
   
   echo -n ">>"
   cd ".."
@@ -25,7 +25,7 @@ install_files () {
 
 add_path_manually(){
   echo "Please add the following to your path manually"
-  echo "export PATH=\"$HOME/.git-gud:\${PATH}\""
+  echo "export PATH=\"$HOME/.git-gud/bin:\${PATH}\""
 }
 
 write_to_rc(){
@@ -73,8 +73,8 @@ add_files_to_path (){
   fi
 }
 
-if [ ! -d "$HOME/.git-gud" ]; then
-  mkdir "$HOME/.git-gud"
+if [ ! -d "$HOME/.git-gud/bin" ]; then
+  mkdir "$HOME/.git-gud/bin"
   install_files
   add_files_to_path
 else
@@ -83,8 +83,8 @@ else
   stty raw -echo ; answer=$(head -c 1) ; stty $old_stty_cfg # Care playing with stty
   if echo "$answer" | grep -iq "^y" ;then
     echo "Yes"
-    rm -rf "$HOME/.git-gud"
-    mkdir "$HOME/.git-gud"
+    rm -rf "$HOME/.git-gud/bin"
+    mkdir "$HOME/.git-gud/bin"
     install_files
     add_files_to_path
   else
