@@ -33,17 +33,17 @@ write_to_rc(){
   
   # Remove Path if it already exist
   grep "-v" "#Added by Git Gud" "$HOME/$1" > "temp" && mv "temp" "$HOME/$1"
-  grep "-v" "export PATH=\"$HOME/.git-gud:\${PATH}\"" "$HOME/$1" > "temp" && mv "temp" "$HOME/$1"
+  grep "-v" "export PATH=\"$HOME/.git-gud/bin:\${PATH}\"" "$HOME/$1" > "temp" && mv "temp" "$HOME/$1"
   echo -n ">>"
 
   # Echo in the path
   echo "#Added by Git Gud" >> "$HOME/$1"  
-  echo "export PATH=\"$HOME/.git-gud:\${PATH}\"" >> "$HOME/$1"   
+  echo "export PATH=\"$HOME/.git-gud/bin:\${PATH}\"" >> "$HOME/$1"   
   echo ">> Done"
 
   # Reload the rc
-  echo "Reloading $1: source $1"
-  source "$HOME/$1"
+  echo "Reloading $1: source $HOME/$1"
+  source $HOME/$1
   echo ">> Done"
 }
 

@@ -12,8 +12,9 @@ if [ $# -gt 0 ]; then
     pull )
       pull.sh
       ;;
-    push )
-      push.sh
+    commit|add|push )
+      shift
+      commit.sh $@
       ;;
     undo )
       shift
@@ -34,5 +35,5 @@ if [ $# -gt 0 ]; then
       ;;
   esac
 else
-  cat $HOME/.git-gud/usage.txt
+  cat $HOME/.git-gud/bin/usage.txt
 fi
