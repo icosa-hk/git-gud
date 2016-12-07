@@ -51,7 +51,10 @@ Pull recursing and updating submodules
 
 1. Add the files specified
 2. Prompt for commit message
-3. Push
+3. Prompt for permission to push
+4. Push upon receiving permission
+
+Alias include add, commit, and push, where if push is used, git-gud will push without prompting for permission
 
 ### gud undo [opt]
 

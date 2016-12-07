@@ -14,7 +14,7 @@ else
     push )
       #undo PUSH
       # as written is this blog post: http://megakemp.com/2016/08/25/git-undo/
-      git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}};
+      git reset --hard $(git rev-parse --abbrev-ref HEAD)@{1};
       ;;
     * )
       echo "git gud undo: $1 is not a valid command. See 'git gud man'."
