@@ -18,9 +18,10 @@ git gud <cmd> [options]
 ## Feature List
 
 - [ ] gud init
+- [ ] gud clone
 - [X] gud pull
 - [ ] gud push
-- [ ] gud undo
+- [X] gud undo
 - [ ] gud profile
 - [ ] gud backmerge
 
