@@ -11,8 +11,10 @@ git gud <cmd> [options]
 ```
 
 ## Installation
+
+through curl
 ```shell
-./install.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/icosa-hk/git-gud/master/gitgud.sh)"
 ```
 
 ## Feature List
