@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ ! $# == 1 ]; then
-  echo "usage: git gud undo [add|commit|push]"
+  cat $HOME/.git-gud/bin/undo.txt
 else
   case $1 in
     add )

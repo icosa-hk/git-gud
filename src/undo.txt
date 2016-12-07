@@ -1,0 +1,6 @@
+usage: git gud undo [add|commit|changes]
+
+This a list of the git gud undo fucntions:
+  add        undo the latest add, local files unchanged
+  commit     undo the latest local commit, local files unchanged
+  changes    undo the all local changes to the most recent commit
