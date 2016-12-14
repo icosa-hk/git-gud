@@ -18,7 +18,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/icosa-hk/git-gud/master/gi
 ```
 
 ## Feature List
-
+- [X] installation
 - [ ] gud init
 - [X] gud clone
 - [X] gud pull
@@ -60,11 +60,26 @@ Alias include add, commit, and push, where if push is used, git-gud will push wi
 ### gud undo [opt]
 
 1. add: Undo an add
-2. commit: Undo a commit
+2. commit: Undo a local commit
 3. changes: Undo all local changes to the lastest commit
+4. push: Take the 2nd last commit and commit the changes needed for the last commit to revert to the 2nd last
 
 
 ### gud profile
 
+1. without argument: read list of profiles and allow user to pick one
+2. new : prompt to make a new profile
+3. edit: show list of profiles to pick from for edit
+4. delete : delete a profile
+
+### gud config
+
+Config Options:
+1. warning: show warning prompts
+2. verbose: print the commands performed
 
 ### gud backmerge
+
+1. without argument: backmerge current branch into default branch
+2. 1 argument: backmerge current branch to branch specified argument
+3. 2 arguments: backmerge branch specified by 1st argument into the 2nd
